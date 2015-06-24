@@ -1,19 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="initial-scale=1">
-    <title>My ReactD3 App</title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1">
+  <link rel="stylesheet" type="text/css"  href="style.css">
+  <title>My ReactD3 App</title>
+</head>
 
-  <body>
-    <div id="app"></div>
+<body>
+  <div id="app"></div>
 
-    <script type="text/jsx">
+  <script type="text/jsx">
 
-    </script>
+    var all = [
+      {x: 'a', y: 20},
+      {x: 'b', y: 14},
+      {x: 'c', y: 12},
+      {x: 'd', y: 19},
+      {x: 'e', y: 18},
+      {x: 'f', y: 15},
+      {x: 'g', y: 10},
+      {x: 'h', y: 19},
+      {x: 'h', y: 16},
+      {x: 'i', y: 17},
+      {x: 'j', y: 18},
+      {x: 'k', y: 14}
+    ];
 
-    <script src="https://fb.me/react-0.13.3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
-  </body>
+    var sorted = [
+      {x: 'a', y: 9},
+      {x: 'b', y: 5},
+      {x: 'c', y: 6},
+      {x: 'd', y: 12},
+      {x: 'e', y: 10},
+      {x: 'f', y: 7},
+      {x: 'g', y: 4},
+      {x: 'h', y: 9},
+      {x: 'i', y: 8},
+      {x: 'j', y: 7},
+      {x: 'k', y: 6}
+    ];
+
+    var Chart = React.createClass({
+      render: function() {
+        return (
+          <svg width={this.props.width}
+               height={this.props.height}>
+              {this.props.children}
+          </svg>
+        );
+      }
+    });
+
+    var Axis = React.createClass({
+      render: function() {
+        return <g></g>
+      }
+    });
+
+    var App = React.createClass({
+      getDefaultProps: function() {
+          return {
+            width: 500,
+            height: 500
+          }
+      },
+
+      getInitialState: function() {
+          return {
+            data: all
+          }
+      },
+
+      showAll: function() {
+        this.setState({data : all})
+      },
+
+      sorter: function() {
+        this.setState({data: sorted});
+      },
+
+      render: function() {
+          return (
+            <div>
+              <div className="selection">
+                <ul>
+                  <li onClick={this.showAll}>All</li>
+                  <li onClick={this.sorter}>Sorted</li>
+                </ul>
+              </div>
+              <hr/>
+              <Chart width={this.props.width}
+                     height={this.props.height}>
+              </Chart>
+            </div>
+          );
+      }
+    });
+
+    React.render(
+      <App/>,
+      document.getElementById('app')
+    );
+
+  </script>
+
+  <script src="https://fb.me/react-0.13.3.min.js"></script>
+  <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
+
+</body>
 </html>
