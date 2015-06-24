@@ -16,15 +16,15 @@ body {
 
 .selection ul {
   position: relative;
-  left: 50em;
-  top: 20em;
+  left: 60em;
+  top: 10em;
   margin: 0;
   padding: 0;
 }
 
 .selection ul li {
-  display: inline;
-  /*text-decoration: none;*/
-  margin-left: 10px;
+  margin-bottom: 10px;
   cursor: pointer;
+  list-style-type: none;
+  font-size: 2em;
 }

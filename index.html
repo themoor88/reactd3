@@ -23,7 +23,8 @@
       {x: 'h', y: 16},
       {x: 'i', y: 17},
       {x: 'j', y: 18},
-      {x: 'k', y: 14}
+      {x: 'k', y: 14},
+      {x: 'l', y: 15}
     ];
 
     var sorted = [
@@ -37,21 +38,38 @@
       {x: 'h', y: 9},
       {x: 'i', y: 8},
       {x: 'j', y: 7},
-      {x: 'k', y: 6}
+      {x: 'k', y: 6},
+      {x: 'l', y: 7}
     ];
 
-    var sorted2 = [
+    var daily = [
       {x: 'a', y: 3},
       {x: 'b', y: 3},
       {x: 'c', y: 4},
       {x: 'd', y: 2},
       {x: 'e', y: 1},
-      {x: 'f', y: 5},
-      {x: 'g', y: 5},
+      {x: 'f', y: 3},
+      {x: 'g', y: 4},
       {x: 'h', y: 4},
       {x: 'i', y: 3},
       {x: 'j', y: 2},
-      {x: 'k', y: 2}
+      {x: 'k', y: 2},
+      {x: 'l', y: 4}
+    ];
+
+    var five = [
+      {x: 'a', y: 20},
+      {x: 'b', y: 21},
+      {x: 'c', y: 30},
+      {x: 'd', y: 23},
+      {x: 'e', y: 21},
+      {x: 'f', y: 22},
+      {x: 'g', y: 29},
+      {x: 'h', y: 27},
+      {x: 'i', y: 28},
+      {x: 'j', y: 22},
+      {x: 'k', y: 24},
+      {x: 'l', y: 25}
     ];
 
     var SetIntervalMixin = {
@@ -82,7 +100,7 @@
       },
 
       shouldComponentUpdate: function(nextProps) {
-          return this.props.data !== nextProps.data;
+        return this.props.data !== nextProps.data;
       },
 
       render: function() {
@@ -156,7 +174,7 @@
       },
 
       tick: function(start) {
-        this.setState({milliseconds: this.state.milliseconds + 5});
+        this.setState({milliseconds: this.state.milliseconds + 2});
       },
 
       render: function() {
@@ -188,8 +206,8 @@
     var App = React.createClass({
       getDefaultProps: function() {
           return {
-            width: 800,
-            height: 500
+            width: 900,
+            height: 400
           }
       },
 
@@ -207,8 +225,12 @@
         this.setState({data: sorted});
       },
 
-      sorter2: function() {
-        this.setState({data: sorted2});
+      day: function() {
+        this.setState({data: daily});
+      },
+
+      fiver: function() {
+        this.setState({data: five});
       },
 
       render: function() {
@@ -216,10 +238,10 @@
           <div>
             <div className="selection">
               <ul>
+                <li onClick={this.fiver}>Five Years</li>
                 <li onClick={this.showAll}>Yearly</li>
                 <li onClick={this.sorter}>Monthly</li>
-                <li onClick={this.sorter2}>Daily</li>
-
+                <li onClick={this.day}>Daily</li>
               </ul>
             </div>
             <Chart width={this.props.width}
