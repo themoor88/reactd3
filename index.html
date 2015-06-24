@@ -40,6 +40,20 @@
       {x: 'k', y: 6}
     ];
 
+    var sorted2 = [
+      {x: 'a', y: 3},
+      {x: 'b', y: 3},
+      {x: 'c', y: 4},
+      {x: 'd', y: 2},
+      {x: 'e', y: 1},
+      {x: 'f', y: 5},
+      {x: 'g', y: 5},
+      {x: 'h', y: 4},
+      {x: 'i', y: 3},
+      {x: 'j', y: 2},
+      {x: 'k', y: 2}
+    ];
+
     var SetIntervalMixin = {
       componentWillMount: function() {
         this.intervals = [];
@@ -142,7 +156,7 @@
       },
 
       tick: function(start) {
-        this.setState({milliseconds: this.state.milliseconds + 10});
+        this.setState({milliseconds: this.state.milliseconds + 5});
       },
 
       render: function() {
@@ -174,8 +188,8 @@
     var App = React.createClass({
       getDefaultProps: function() {
           return {
-            width: 700,
-            height: 700
+            width: 800,
+            height: 500
           }
       },
 
@@ -193,6 +207,10 @@
         this.setState({data: sorted});
       },
 
+      sorter2: function() {
+        this.setState({data: sorted2});
+      },
+
       render: function() {
         return (
           <div>
@@ -200,9 +218,10 @@
               <ul>
                 <li onClick={this.showAll}>Yearly</li>
                 <li onClick={this.sorter}>Monthly</li>
+                <li onClick={this.sorter2}>Daily</li>
+
               </ul>
             </div>
-            <hr/>
             <Chart width={this.props.width}
                    height={this.props.height}>
               <Bar data={this.state.data}

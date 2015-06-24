@@ -7,17 +7,24 @@ body {
 }
 
 .bar {
-  fill: steelblue;
+  fill: orange;
+}
+
+.bar:hover{
+  fill:steelblue;
 }
 
 .selection ul {
+  position: relative;
+  left: 50em;
+  top: 20em;
   margin: 0;
   padding: 0;
 }
 
 .selection ul li {
   display: inline;
-  text-decoration: none;
+  /*text-decoration: none;*/
   margin-left: 10px;
   cursor: pointer;
 }
